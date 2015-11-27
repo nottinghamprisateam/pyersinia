@@ -15,17 +15,23 @@ def main():
 Examples:
 
     * Scan target using default 50 most common plugins:
-        %(tool_name)s TARGET
+        %(tool_name)s --attack arp x.x.x.x y.y.y.y
     '''  % dict(tool_name="pyersinia")
 
     parser = argparse.ArgumentParser(description='%s security tool' % "pyersinia".capitalize(), epilog=examples,
                                      formatter_class=argparse.RawTextHelpFormatter)
 
     # Main options
-    parser.add_argument("target", metavar="TARGET", nargs="*")
+
     parser.add_argument("-v", "--verbosity", dest="verbose", action="count", help="verbosity level: -v, -vv, -vvv.", default=0)
+    parser.add_argument("--attack", help="start attack arp posion", nargs=1, dest="attack" , metavar="ATTACK")
+
+    #ARPSPOOF
+    parser.add_argument("target", metavar="TARGET")
+    parser.add_argument("victim", metavar="VICTIM")
 
     parsed_args = parser.parse_args()
+
 
     # Configure global log
     log.setLevel(abs(5 - parsed_args.verbose) % 5)
@@ -60,3 +66,5 @@ if __name__ == "__main__" and __package__ is None:
     del sys, os
 
     main()
+
+

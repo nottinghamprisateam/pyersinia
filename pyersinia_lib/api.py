@@ -54,7 +54,14 @@ def run(config):
     # --------------------------------------------------------------------------
     if version_info < 3:
         raise RuntimeError("You need Python 3.x or higher to run pyersinia")
-
+    #
     # --------------------------------------------------------------------------
     # INSERT YOUR CODE HERE  # TODO
     # --------------------------------------------------------------------------
+
+
+    if config.attack == ['arp'] :
+        from .libs.plugins.arp_poison import run_attack
+
+    run_attack(config)
+
