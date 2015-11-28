@@ -2,9 +2,6 @@ Pyersinia: Network Attack Tool
 ==============================
 
 
-![Logo](https://raw.githubusercontent.com/abirtone/STB/master/stb_lib/doc/images/logo.png)
-
-
 Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
 Final version | 1.0.3
