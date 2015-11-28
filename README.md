@@ -1,32 +1,32 @@
-pyersinia
-=========
+Pyersinia: Network Attack Tool
+==============================
 
 
 ![Logo](https://raw.githubusercontent.com/abirtone/STB/master/stb_lib/doc/images/logo.png)
 
-*pyersinia: Herramienta para ataques de capa de enlace*
 
 Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
+Final version | 1.0.3
 Issues | https://github.com/nottinghamprisateam/pyersinia/issues/
-Python version | Python 3 & 2
+Python version | Python 2 and 3
 
-What's pyersinia
+¿Qué es Pyersinia? // What's pyersinia?
 ----------------
 
-Framework realizado en python utilizando la libreria scapy para implementar ataques a protocolos de la capa de enlace.
+Pyersinia es un framework similar a la herramienta Yersinia, pero implementada en Python utilizando la librería Scapy. El objetivo principal es la realización de ataques de red como ARP spoofing, DHCP DoS, STP DoS entre otros. La comunidad puede añadir nuevos ataques a la herramienta de una manera sencilla, mediante plugins. Esto es gracias a que Pyersinia utiliza el framework STB (Security Tools Builder).
+	
+Pyersinia is a similar tool to Yersinia, but Pyersinia is implemented in Python using Scapy. The main objective is the realization of network attacks such as spoofing ARP, DHCP DoS , STP DoS among others. The community can add new attacks on the tool in a simple way, using plugins. This is because Pyersinia uses the STB (Security Tools Builder) framework.
 
-What's new?
+Novedades // What's new?
 -----------
 
-This pyersinia version, add a lot of new features and fixes, like:
+Añadir nuevos ataques a la herramienta se hace una tarea bastante sencilla debido a que la 
+herramienta esta implementada sobre el framework STB (Security Tool Builder). Mediante 
+plugins se podrán añadir los nuevos ataques de red. 
 
-Version 1.0.0
-+++++++++++++
-
-- First version released
-
-You can read entire list in CHANGELOG file.
+Adding new attacks on the tool is a simple task because we use the framework STB (Security Tool Builder). 
+The new attacks are added by plugins. 
 
 Installation
 ------------
@@ -36,8 +36,6 @@ Install pyersinia is so easy:
 ```
 $ python -m pip install pyersinia
 ```
-
-**Remember that pyersinia only runs in Python 3**.
 
 Quick start
 -----------
@@ -54,10 +52,11 @@ Advanced options
 
 There are the advanced options:
 
-- **-v**, **-vv**, **-vvv**: Enable verbose mode.
+**-v**, **-vv**, **-vvv**: Enable verbose mode.
 
 References
 ----------
 
-* OMSTD (Open Methodology for Security Tool Developers): http://omstd.readthedocs.org
-* STB (Security Tool Builder): https://github.com/abirtone/STB 
+- OMSTD (Open Methodology for Security Tool Developers): http://omstd.readthedocs.org
+- STB (Security Tool Builder): https://github.com/abirtone/STB
+- Yersinia: https://github.com/tomac/yersinia
