@@ -24,16 +24,16 @@ Examples:
     # Main options
 
     parser.add_argument("-v", "--verbosity", dest="verbose", action="count", help="verbosity level: -v, -vv, -vvv.", default=0)
-    parser.add_argument("--attack", help="start attack arp posion", nargs=1, dest="attack" , metavar="ATTACK")
+    parser.add_argument("--attack", required=True, help="start attack arp posion", nargs=1, dest="attack" , metavar="ATTACK")
 
-    #ARPSPOOF
-    parser.add_argument("target", metavar="TARGET")
-    parser.add_argument("victim", metavar="VICTIM")
+    #Arp Spoof
+    parser.add_argument("target", metavar="TARGET", nargs="?")
+    parser.add_argument("victim", metavar="VICTIM", nargs="?")
 
     parsed_args = parser.parse_args()
 
 
-    # Configure global log
+    #Configure global log
     log.setLevel(abs(5 - parsed_args.verbose) % 5)
 
     # Set Global Config
