@@ -6,7 +6,7 @@ Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
 Final version | 1.0.3
 Issues | https://github.com/nottinghamprisateam/pyersinia/issues/
-Python version | Python 2 and 3
+Python version | Python 2, Python 3
 
 ¿Qué es Pyersinia? // What's pyersinia?
 ----------------
