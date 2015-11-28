@@ -52,16 +52,16 @@ def run(config):
     # --------------------------------------------------------------------------
     # Checks Python version
     # --------------------------------------------------------------------------
-    if version_info < 3:
-        raise RuntimeError("You need Python 3.x or higher to run pyersinia")
+    #if version_info < 3:
+    #    raise RuntimeError("You need Python 3.x or higher to run pyersinia")
     #
     # --------------------------------------------------------------------------
     # INSERT YOUR CODE HERE  # TODO
     # --------------------------------------------------------------------------
 
-    if config.attack == ['arp'] :
+    if config.attack == ['arp']:
         from .libs.plugins.arp_poison import run_attack
-    elif config.attack == ['dhcp_discover_dos'] :
+    elif config.attack == ['dhcp_discover_dos']:
         from .libs.plugins.dhcp_discover_dos import run_attack
     elif config.attack == ['stp_tcn']:
         from .libs.plugins.stp_tcn import run_attack

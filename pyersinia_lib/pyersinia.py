@@ -26,7 +26,7 @@ Examples:
     parser.add_argument("-v", "--verbosity", dest="verbose", action="count",
                         help="verbosity level: -v, -vv, -vvv.", default=0)
 
-    parser.add_argument("--attack", required=True, help="start attack arp posion",
+    parser.add_argument("-a", "--attack", required=True, help="start ARP poison attack",
                         nargs=1, dest="attack", metavar="ATTACK")
 
     # Arp Spoof
@@ -34,7 +34,7 @@ Examples:
     parser.add_argument("victim", metavar="VICTIM", nargs="?")
 
     # dhcp_Discover
-    parser.add_argument("-i", dest="interface", nargs=1, metavar="INTERFACE")
+    parser.add_argument("-i", "--iface", dest="interface", help="start DoS attack DHCP DISCOVER", nargs=1, metavar="INTERFACE")
 
 
     parsed_args = parser.parse_args()
@@ -66,9 +66,9 @@ if __name__ == "__main__" and __package__ is None:
     import pyersinia_lib
     __package__ = str("pyersinia_lib")
     # Checks Python version
-    if sys.version_info < 3:
-        print("\n[!] You need a Python version greater than 3.x\n")
-        exit(1)
+    #if sys.version_info < 3:
+    #    print("\n[!] You need a Python version greater than 3.x\n")
+    #    exit(1)
 
     del sys, os
 
