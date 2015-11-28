@@ -14,8 +14,8 @@ def main():
     examples = '''
 Examples:
 
-    * Scan target using default 50 most common plugins:
         %(tool_name)s --attack arp x.x.x.x y.y.y.y
+        %(tool_name)s --attack dhcp_discover_dos -i eth0
     '''  % dict(tool_name="pyersinia")
 
     parser = argparse.ArgumentParser(description='%s security tool' % "pyersinia".capitalize(), epilog=examples,
@@ -23,17 +23,24 @@ Examples:
 
     # Main options
 
-    parser.add_argument("-v", "--verbosity", dest="verbose", action="count", help="verbosity level: -v, -vv, -vvv.", default=0)
-    parser.add_argument("--attack", required=True, help="start attack arp posion", nargs=1, dest="attack" , metavar="ATTACK")
+    parser.add_argument("-v", "--verbosity", dest="verbose", action="count",
+                        help="verbosity level: -v, -vv, -vvv.", default=0)
 
-    #Arp Spoof
+    parser.add_argument("--attack", required=True, help="start attack arp posion",
+                        nargs=1, dest="attack", metavar="ATTACK")
+
+    # Arp Spoof
     parser.add_argument("target", metavar="TARGET", nargs="?")
     parser.add_argument("victim", metavar="VICTIM", nargs="?")
+
+    # dhcp_Discover
+    parser.add_argument("-i", dest="interface", nargs=1, metavar="INTERFACE")
+
 
     parsed_args = parser.parse_args()
 
 
-    #Configure global log
+    # Configure global log
     log.setLevel(abs(5 - parsed_args.verbose) % 5)
 
     # Set Global Config

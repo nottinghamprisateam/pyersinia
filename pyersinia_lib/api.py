@@ -59,9 +59,12 @@ def run(config):
     # INSERT YOUR CODE HERE  # TODO
     # --------------------------------------------------------------------------
 
-
     if config.attack == ['arp'] :
         from .libs.plugins.arp_poison import run_attack
+    elif config.attack == ['dhcp_discover_dos'] :
+        from .libs.plugins.dhcp_discover_dos import run_attack
+    elif config.attack == ['stp_tcn']:
+        from .libs.plugins.stp_tcn import run_attack
 
     run_attack(config)
 
