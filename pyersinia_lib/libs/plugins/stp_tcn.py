@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
 
 from scapy.layers.l2 import Ether, LLC, STP
 from scapy.all import sendp, RandMAC
 from termcolor import colored
 import six
+
+
 
 def run(inter):
 

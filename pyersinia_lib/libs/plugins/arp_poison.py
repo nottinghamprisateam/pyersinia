@@ -1,4 +1,7 @@
 from threading import Thread
+import logging
+logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
+
 from scapy.layers.l2 import arpcachepoison
 from scapy.all import sendp
 

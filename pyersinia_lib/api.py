@@ -5,10 +5,8 @@ This file contains API calls and Data
 """
 
 import six
-
 from sys import version_info
 from termcolor import colored
-
 from .data import *
 
 __version__ = "1.0.0"
