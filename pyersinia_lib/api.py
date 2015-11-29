@@ -8,6 +8,7 @@ import six
 from sys import version_info
 from termcolor import colored
 from .data import *
+from os import geteuid
 
 __version__ = "1.0.0"
 __all__ = ["run_console", "run", "GlobalParameters"]
@@ -28,7 +29,7 @@ def run_console(config):
     if not isinstance(config, GlobalParameters):
         raise TypeError("Expected GlobalParameters, got '%s' instead" % type(config))
 
-    six.print_(colored("[*]", "blue"), "Starting pyersinia execution")
+    six.print_(colored("[*]", "blue"), "Starting Pyersinia execution -->")
     run(config)
     six.print_(colored("[*]", "blue"), "Done!")
 
@@ -47,22 +48,36 @@ def run(config):
     """
     if not isinstance(config, GlobalParameters):
         raise TypeError("Expected GlobalParameters, got '%s' instead" % type(config))
+
+    if geteuid():
+        six.print_(colored("[*]", "blue"), "DENIED! Please run as root.")
+        exit()
+
     # --------------------------------------------------------------------------
-    # Checks Python version
-    # --------------------------------------------------------------------------
-    #if version_info < 3:
-    #    raise RuntimeError("You need Python 3.x or higher to run pyersinia")
     #
     # --------------------------------------------------------------------------
-    # INSERT YOUR CODE HERE  # TODO
-    # --------------------------------------------------------------------------
 
-    if config.attack == ['arp']:
+    # ARP attack import
+    if config.attack == ['arp_spoof']:
         from .libs.plugins.arp_poison import run_attack
+
+    # Dhcp_discover_dos attack import
     elif config.attack == ['dhcp_discover_dos']:
         from .libs.plugins.dhcp_discover_dos import run_attack
+        six.print_(colored("[*]", "blue"), "Running DHCP DISCOVER ATTACK...")
+
+    # Stp_tcn attack import
     elif config.attack == ['stp_tcn']:
         from .libs.plugins.stp_tcn import run_attack
+        six.print_(colored("[*]", "blue"), "Running STP TCN ATTACK...")
+
+    # New attack import
+    # ...
+    # ...
+
+    else:
+        print "Attack does not exist!"
+        exit()
 
     run_attack(config)
 

