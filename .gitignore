@@ -52,7 +52,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
-
+.idea/
 # PyBuilder
 target/
 ### VirtualEnv template
@@ -67,3 +67,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # Created by .ignore support plugin (hsz.mobi)
+
