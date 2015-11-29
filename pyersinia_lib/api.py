@@ -83,6 +83,10 @@ def run(config):
         elif config.attack == ['stp_conf']:
             from .libs.plugins.stp_bdpu_conf import run_attack
             six.print_(colored("[*]", "blue"), "Running STP CONF ATTACK...")
+        # Stp_root attack import
+        elif config.attack == ['stp_root']:
+            from .libs.plugins.stp_root_role import run_attack
+            six.print_(colored("[*]", "blue"), "Running STP ROOT ROLE ATTACK...")
 
         # New attack import
         # ...
