@@ -50,7 +50,7 @@ def run(config):
         raise TypeError("Expected GlobalParameters, got '%s' instead" % type(config))
 
     if geteuid():
-        six.print_(colored("[*]", "blue"), "DENIED! Please run as root.")
+        six.print_(colored("[!]", "red"), "DENIED! Please run as root.")
         exit()
 
     # --------------------------------------------------------------------------
@@ -70,6 +70,9 @@ def run(config):
     elif config.attack == ['stp_tcn']:
         from .libs.plugins.stp_tcn import run_attack
         six.print_(colored("[*]", "blue"), "Running STP TCN ATTACK...")
+    elif config.attack == ['stp_conf']:
+        from .libs.plugins.stp_bdpu_conf import run_attack
+        six.print_(colored("[*]", "blue"), "Running STP CONF ATTACK...")
 
     # New attack import
     # ...

