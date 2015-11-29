@@ -30,14 +30,12 @@ example for each attack:
     parser.add_argument("-a", "--attack", required=True, help="choose attack type",
                         nargs=1, dest="attack")
 
-    # Arp_Spoof args
-    parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
-    parser.add_argument("victim", metavar="arp_spoof_VICTIM", nargs="?")
-
-    # Dhcp_Discover args
     parser.add_argument("-i", "--iface", dest="interface", help="choose interface", nargs=1,
                         metavar="iface")
 
+    # Arp_Spoof args
+    parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
+    parser.add_argument("victim", metavar="arp_spoof_VICTIM", nargs="?")
 
     parsed_args = parser.parse_args()
 

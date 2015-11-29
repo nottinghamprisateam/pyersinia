@@ -70,6 +70,8 @@ def run(config):
     elif config.attack == ['stp_tcn']:
         from .libs.plugins.stp_tcn import run_attack
         six.print_(colored("[*]", "blue"), "Running STP TCN ATTACK...")
+
+    # Stp_conf attack import
     elif config.attack == ['stp_conf']:
         from .libs.plugins.stp_bdpu_conf import run_attack
         six.print_(colored("[*]", "blue"), "Running STP CONF ATTACK...")

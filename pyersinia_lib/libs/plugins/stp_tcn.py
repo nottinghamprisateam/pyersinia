@@ -27,3 +27,4 @@ def run(inter):
 def run_attack(config):
     run(config.interface)
 
+

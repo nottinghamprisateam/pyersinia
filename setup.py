@@ -52,7 +52,6 @@ setup(
         'Intended Audience :: Other Audience',
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS',
-        'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
