@@ -45,7 +45,7 @@ def reciveValidPacket(interface):
 
 def run_attack(config):
 
-    
+
 
     pkt=reciveValidPacket(config.interface[0])
 
