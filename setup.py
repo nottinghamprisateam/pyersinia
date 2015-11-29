@@ -33,7 +33,7 @@ with open(join(dirname(__file__), 'requirements.txt')) as f:
 
 setup(
     name='pyersinia',
-    version='1.0.3',
+    version='1.0.5',
     install_requires=required,
     url='https://github.com/nottinghamprisateam/pyersinia',
     license='BSD',
@@ -52,7 +52,6 @@ setup(
         'Intended Audience :: Other Audience',
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS',
-        'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',

