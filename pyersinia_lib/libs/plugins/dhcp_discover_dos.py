@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-import logging
-logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
 
 from scapy.all import Ether, RandMAC, sendp
 from scapy.layers.inet import IP, UDP
 from scapy.layers.dhcp import BOOTP, DHCP
 
 
+# --------------------------------------------------------------------------
+#
+# --------------------------------------------------------------------------
 
 def run(interface):
 

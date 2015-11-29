@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import argparse
 import logging
+logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+from scapy.all import *
+import argparse
 
 log = logging.getLogger(__name__)
 
@@ -30,7 +32,7 @@ example for each attack:
     parser.add_argument("-a", "--attack", required=True, help="choose attack type",
                         nargs=1, dest="attack")
 
-    parser.add_argument("-i", "--iface", dest="interface", help="choose interface", nargs=1,
+    parser.add_argument("-i", "--iface", dest="interface", required=True, help="choose interface", nargs=1,
                         metavar="iface")
 
     # Arp_Spoof args
