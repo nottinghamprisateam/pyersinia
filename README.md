@@ -4,7 +4,7 @@ Pyersinia: Network Attack Tool
 
 Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
-Final version | 1.0.3
+Final version | 1.0.5
 Issues | https://github.com/nottinghamprisateam/pyersinia/issues/
 Python version | Python 2, Python 3
 
