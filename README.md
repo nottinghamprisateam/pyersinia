@@ -4,7 +4,7 @@ Pyersinia: Network Attack Tool
 
 Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
-Final version | 1.0.5
+Last version | 1.0.5
 Issues | https://github.com/nottinghamprisateam/pyersinia/issues/
 Python version | Python 2, Python 3
 
@@ -39,7 +39,7 @@ $ python -m pip install pyersinia
 Or install from Pypi:
 
 ```
-$ pip install pyersinia
+# pip install pyersinia
 ```
 
 
@@ -52,6 +52,18 @@ You can display inline help writing:
 
 python pyersinia.py -h
 ```
+
+Licence
+-------
+
+This project is licensed as BSD license.
+
+
+Author
+------
+
+Nottingham Prisa Team.
+
 
 References
 ----------
