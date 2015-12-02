@@ -14,10 +14,12 @@ def main():
     from .api import run_console, GlobalParameters
 
     examples = '''
-example for each attack:
+supported attacks:
+        arp_spoof, dhcp_discover_dos, stp_tcn, stp_conf, stp_root
+
+examples:
         python %(tool_name)s.py -a arp_spoof 127.0.0.1 127.0.0.1
-        python %(tool_name)s.py -a dhcp_discover_dos -i eth0
-        python %(tool_name)s.py -a stp_tcn -i lo
+        python %(tool_name)s.py -a stp_root -i eth0
     '''  % dict(tool_name="pyersinia")
 
     parser = argparse.ArgumentParser(description='#############################\n'
@@ -29,11 +31,11 @@ example for each attack:
     parser.add_argument("-v", "--verbosity", dest="verbose", action="count",
                         help="verbosity level", default=0)
 
-    parser.add_argument("-a", "--attack", required=True, help="choose attack type",
-                        nargs=1, dest="attack")
+    parser.add_argument("-a", required=True, help="choose supported attack type",
+                        nargs=1, dest="attack", metavar="ATTACK_TYPE")
 
-    parser.add_argument("-i", "--iface", dest="interface", required=True, help="choose interface", nargs=1,
-                        metavar="iface")
+    parser.add_argument("-i", dest="interface", required=True, help="choose network interface", nargs=1,
+                        metavar="IFACE")
 
     # Arp_Spoof args
     parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
