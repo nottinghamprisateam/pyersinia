@@ -2,9 +2,11 @@
 
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+
 from scapy.all import *
 import argparse
 
+logging.basicConfig(format="%(message)s")
 log = logging.getLogger(__name__)
 
 
@@ -54,7 +56,7 @@ examples:
     except KeyboardInterrupt:
         log.warning("[*] CTRL+C caught. Exiting...")
     except Exception as e:
-        log.info("[!] Unhandled exception: %s" % str(e))
+        log.critical("[!] Unhandled exception: %s" % str(e))
 
 if __name__ == "__main__" and __package__ is None:
     # --------------------------------------------------------------------------

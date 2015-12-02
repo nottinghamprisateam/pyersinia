@@ -50,7 +50,29 @@ You can display inline help writing:
 
 ```bash
 
-python pyersinia.py -h
+> python pyersinia.py -h
+
+#############################
+####Pyersinia attack tool####
+#############################
+
+positional arguments:
+  arp_spoof_TARGET
+  arp_spoof_VICTIM
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -v, --verbosity   verbosity level
+  -a ATTACK_TYPE    choose supported attack type
+  -i IFACE          choose network interface
+
+supported attacks:
+        arp_spoof, dhcp_discover_dos, stp_tcn, stp_conf, stp_root
+
+examples:
+        python pyersinia.py -a arp_spoof 127.0.0.1 127.0.0.1
+        python pyersinia.py -a stp_root -i eth0
+
 ```
 
 Licence
