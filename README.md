@@ -28,20 +28,20 @@ You can contribute for this project easily.
 First you have to add your REQUIRED parameters into pyersinia.py file if they are not.
 Second you have to add in the api file as a plugin your import attack.
 At the end, you have to add your plugin in ./pyersinia_lib/libs/plugins folder. This plugin should have 2 functions at least:
-    -   run_attack(config)
-    -   run(your parameters)
+- run_attack(config)
+- run(your parameters)
 
 In run function you will include your new attack.
 
-![running](https://raw.githubusercontent.com/nottinghamprisateam/pyersinia/pyersinia_lib/doc/en/images/createPlugin.gif)
+![running](https://raw.githubusercontent.com/nottinghamprisateam/pyersinia/documentation/pyersinia_lib/doc/en/images/createPlugin.gif)
 
 
 How to taste your plugins
 -------------------------
 If you need switch or router to taste your plugins, you will have to install gns3 to virtualize them.
-    - GNS3 Repository: https://github.com/GNS3/gns3-gui
-    - http://binarynature.blogspot.com.es/2015/11/install-configure-gns3-arch-linux.html
-    - https://community.gns3.com/community/connect/community-blog/blog/2015/11/11/setting-up-gns3-on-opensuse-leap
+- GNS3 Repository: https://github.com/GNS3/gns3-gui
+- http://binarynature.blogspot.com.es/2015/11/install-configure-gns3-arch-linux.html
+- https://community.gns3.com/community/connect/community-blog/blog/2015/11/11/setting-up-gns3-on-opensuse-leap
 
 
 Installation
