@@ -65,7 +65,7 @@ def run(config):
 
         # ARP attack import
         if config.attack == ['arp_spoof']:
-            evalueAddr(config.target, config.victim)
+
             from .libs.plugins.arp_poison import run_attack
             six.print_(colored("[*]", "blue"), "Running ARP SPOOF ATTACK...")
 
@@ -104,21 +104,3 @@ def run(config):
     # Run attack chosen
     run_attack(config)
 
-
-def evalueAddr(target, victim):
-    min = 0
-    max = 255
-    count = 0
-    fields = 8
-
-    for x in target.split('.'):
-        if int(x) >= min and int(x) <= max:
-            count += 1
-
-    for x in victim.split('.'):
-        if int(x) >= min and int(x) <= max:
-            count += 1
-
-    if count != fields:
-        six.print_(colored("[!]", "red"), "ERROR! Invalid IPs.")
-        exit()
