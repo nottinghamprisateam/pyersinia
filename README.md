@@ -1,32 +1,31 @@
-pyersinia
-=========
+Pyersinia: Network Attack Tool
+==============================
 
-
-![Logo](https://raw.githubusercontent.com/abirtone/STB/master/stb_lib/doc/images/logo.png)
-
-*pyersinia: Herramienta para ataques de capa de enlace*
 
 Code | https://github.com/nottinghamprisateam/pyersinia
 ---- | ----------------------------------------------
+Last version | 1.0.5
 Issues | https://github.com/nottinghamprisateam/pyersinia/issues/
-Python version | Python 3 & 2
+Python version | Python 2, Python 3
 
-What's pyersinia
-----------------
 
-Framework realizado en python utilizando la libreria scapy para implementar ataques a protocolos de la capa de enlace.
+What's pyersinia?
+-----------------
+
+Pyersinia is a similar tool to Yersinia, but Pyersinia is implemented in Python using Scapy. The main objective is the realization of network attacks such as spoofing ARP, DHCP DoS , STP DoS among others. The community can add new attacks on the tool in a simple way, using plugins. This is because Pyersinia uses the STB (Security Tools Builder) framework.
+
 
 What's new?
 -----------
 
-This pyersinia version, add a lot of new features and fixes, like:
+Adding new attacks on the tool is a simple task because we use the framework STB (Security Tool Builder). 
+The new attacks are added by plugins. 
 
-Version 1.0.0
-+++++++++++++
 
-- First version released
+How to contribute to this project
+---------------------------------
+(Link sphinx)
 
-You can read entire list in CHANGELOG file.
 
 Installation
 ------------
@@ -37,7 +36,12 @@ Install pyersinia is so easy:
 $ python -m pip install pyersinia
 ```
 
-**Remember that pyersinia only runs in Python 3**.
+Or install from Pypi:
+
+```
+# pip install pyersinia
+```
+
 
 Quick start
 -----------
@@ -46,18 +50,46 @@ You can display inline help writing:
 
 ```bash
 
-python pyersinia.py -h
+> python pyersinia.py -h
+
+#############################
+####Pyersinia attack tool####
+#############################
+
+positional arguments:
+  arp_spoof_TARGET
+  arp_spoof_VICTIM
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -v, --verbosity   verbosity level
+  -a ATTACK_TYPE    choose supported attack type
+  -i IFACE          choose network interface
+
+supported attacks:
+        arp_spoof, dhcp_discover_dos, stp_tcn, stp_conf, stp_root
+
+examples:
+        python pyersinia.py -a arp_spoof 127.0.0.1 127.0.0.1
+        python pyersinia.py -a stp_root -i eth0
+
 ```
 
-Advanced options
-----------------
+Licence
+-------
 
-There are the advanced options:
+This project is licensed as BSD license.
 
-- **-v**, **-vv**, **-vvv**: Enable verbose mode.
+
+Author
+------
+
+Nottingham Prisa Team.
+
 
 References
 ----------
 
-* OMSTD (Open Methodology for Security Tool Developers): http://omstd.readthedocs.org
-* STB (Security Tool Builder): https://github.com/abirtone/STB 
+- OMSTD (Open Methodology for Security Tool Developers): http://omstd.readthedocs.org
+- STB (Security Tool Builder): https://github.com/abirtone/STB
+- Yersinia: https://github.com/tomac/yersinia

@@ -3,7 +3,7 @@
 from threading import Thread
 from scapy.layers.l2 import getmacbyip
 from scapy.all import Ether, ARP, sendp
-
+from IPy import IP
 
 # --------------------------------------------------------------------------
 #
@@ -22,6 +22,9 @@ def run(target, victim, interface):
 
 def run_attack(config):
 
+    evaluate_address(config.target)
+    evaluate_address(config.victim)
+
     if len(config.interface) > 0:
         iface = str(config.interface[0])
 
@@ -38,3 +41,9 @@ def run_attack(config):
         except KeyboardInterrupt:
             pass
 
+
+def evaluate_address(ip_address):
+    try:
+        ip = IP(ip_address)
+    except ValueError:
+        raise TypeError("'%s' is not a valid ip address" % ip_address)
