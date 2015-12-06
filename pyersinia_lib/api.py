@@ -89,6 +89,9 @@ def run(config):
             from .libs.plugins.stp_root_role import run_attack
             six.print_(colored("[*]", "blue"), "Running STP ROOT ROLE ATTACK...")
 
+
+
+
         # New attack import
         # ...
         # ...

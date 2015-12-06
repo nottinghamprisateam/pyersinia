@@ -6,11 +6,16 @@ from scapy.layers.dhcp import BOOTP, DHCP
 
 
 # --------------------------------------------------------------------------
-#
+#                       DHCP DISCOVER DOS
 # --------------------------------------------------------------------------
 
 def run(interface):
 
+    """
+    This function launch DHCP DISCOVER DOS attack
+    :param inter: interface to be launched the attack
+    :type inter: str
+    """
     if len(interface) > 0:
         inter = str(interface[0])
 
@@ -29,5 +34,10 @@ def run(interface):
 
 
 def run_attack(config):
+    """ This function is used for launch the DHCP DISCOVER DOS attack
+    :param config: GlobalParameters option instance
+    :type config: `GlobalParameters`
+
+    """
     run(config.interface)
 
