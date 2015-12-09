@@ -7,3 +7,4 @@ netifaces
 pcapy
 dnet
 IPy
+netaddr

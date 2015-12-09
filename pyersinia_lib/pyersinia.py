@@ -43,7 +43,14 @@ examples:
     parser.add_argument("target", metavar="arp_spoof_TARGET", nargs="?")
     parser.add_argument("victim", metavar="arp_spoof_VICTIM", nargs="?")
 
+    # DHCP Rogue
 
+    parser.add_argument("-g", dest="gateway", help="gateway ip for DHCP conf")
+    parser.add_argument("-s", dest="ipserver", help="DHCP ip server")
+    parser.add_argument("-n", dest="network", help="network address. Example: 192.168.1.0")
+    parser.add_argument("-m", dest="netmask", help="netmask. Example: 255.255.255.0")
+    parser.add_argument("--domain", dest="domain", help="domain name")
+    parser.add_argument("--sdomain", dest="server_domain", help="ip address of name server domain")
 
     parsed_args = parser.parse_args()
 
