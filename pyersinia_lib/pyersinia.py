@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import six
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
@@ -11,18 +12,51 @@ log = logging.getLogger(__name__)
 
 
 # ----------------------------------------------------------------------
+def discover_plugins():
+    """
+    This function try to discover installed plugins dinamically
+
+    :return: a list with plugins names
+    :rtype: list(str)
+
+    """
+    from os import listdir
+    from os.path import join, abspath, dirname
+
+    path = join(abspath(dirname(__file__)), "libs", "plugins")
+
+    plugin_list = []
+
+    for f in listdir(path):
+        if not f.startswith("__") and f.endswith(".py"):
+            plugin_list.append(f.replace(".py", ""))
+
+    return plugin_list
+
+
+# ----------------------------------------------------------------------
 def main():
 
-    from .api import run_console, GlobalParameters
+    # Get available plugins
+    plugins = discover_plugins()
+
+    try:
+        from .api import run_console, GlobalParameters
+    except ImportError as e:
+        six.print_("\n[!] You need to install dependency: '%s'\n" % str(e).replace("No module named ", ""))
+
+        six.print_("To install missing dependencies doing: \n")
+        six.print_("# pip install scapy termcolor netifaces pcapy dnet\n")
+        exit(1)
 
     examples = '''
 supported attacks:
-        arp_spoof, dhcp_discover_dos, stp_tcn, stp_conf, stp_root
+        %(attacks)s
 
 examples:
         python %(tool_name)s.py -a arp_spoof 127.0.0.1 127.0.0.1
         python %(tool_name)s.py -a stp_root -i eth0
-    '''  % dict(tool_name="pyersinia")
+    ''' % dict(tool_name="pyersinia", attacks=", ".join(plugins))
 
     parser = argparse.ArgumentParser(description='#############################\n'
                                                  '####%s attack tool####\n'
@@ -34,7 +68,7 @@ examples:
                         help="verbosity level", default=0)
 
     parser.add_argument("-a", required=True, help="choose supported attack type",
-                        nargs=1, dest="attack", metavar="ATTACK_TYPE")
+                        nargs=1, dest="attack", metavar="ATTACK_TYPE", choices=plugins)
 
     parser.add_argument("-i", dest="interface", required=True, help="choose network interface", nargs=1,
                         metavar="IFACE")
