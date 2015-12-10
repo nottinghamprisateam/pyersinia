@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.WARNING)
-
+import six
+from termcolor import colored
 from scapy.all import sendp,sniff
 from scapy.layers.l2 import getmacbyip,Ether
 from scapy.layers.inet import IP, UDP
@@ -76,10 +77,10 @@ def run(ip_Server, iface, gate, net, netmask, localdomain, domain_ip):
     if IPAddress(gateway) in range_ip:  # if gateway ip is in ip list remove it
         range_ip.remove(IPAddress(gateway))
 
-    if domain == "":
+    if domain is None:
         domain = "localdomain"
 
-    if domain_server == "":
+    if domain_server is None:
         domain_server = ipServer
     else:
         evaluate_address(domain_server)
@@ -119,6 +120,8 @@ def is_DHCP(pkt):
     if DHCP in pkt:
 
         if pkt[DHCP].options[0][1] == 1:
+            six.print_(colored("\n[!]", "red"), "DHCP DISCOVER LISTEN")
+            print pkt.summary()
 
             ipClient = str(range_ip[-1])
 
@@ -130,20 +133,23 @@ def is_DHCP(pkt):
 
             dhcp = DHCP(options=[('message-type', 'offer'), ('subnet_mask', mask), ('server_id', ipServer),
                                  ('lease_time', 1800), ('domain', domain), ('router', gateway),
-                                 ('name_server', ipServer), 'end'])
+                                 ('name_server', domain_server), 'end'])
 
             dhcp_offer = ether/ip/udp/bootp/dhcp
 
             sendp(dhcp_offer, iface=interface, verbose=0)
+            six.print_(colored("\n[!]", "red"), "DHCP OFFER SEND")
+            print dhcp_offer.summary()
 
         if pkt[DHCP].options[0][1] == 3:
-
+            six.print_(colored("\n[!]", "red"), "DHCP REQUEST LISTEN")
+            print pkt.summary()
             ipClient = str(range_ip.pop())
             ether = Ether(dst="ff:ff:ff:ff:ff:ff")
             ip = IP(src=ipServer, dst="255.255.255.255")
             udp = UDP(sport=67, dport=68)
 
-            bootp= BOOTP(op=2, yiaddr=ipClient, siaddr=ipServer, chaddr = pkt[BOOTP].chaddr, xid=pkt[BOOTP].xid)
+            bootp= BOOTP(op=2, yiaddr=ipClient, siaddr=ipServer, chaddr=pkt[BOOTP].chaddr, xid=pkt[BOOTP].xid)
             dhcp = DHCP(options=[('message-type', 'ack'), ('subnet_mask', mask), ('server_id', ipServer),
                                  ('lease_time', 1800), ('domain', domain), ('router', gateway),
                                  ('name_server', domain_server), 'end'])
@@ -151,4 +157,5 @@ def is_DHCP(pkt):
             ack = ether/ip/udp/bootp/dhcp
 
             sendp(ack, iface=interface, verbose=0)
-
+            six.print_(colored("\n[!]", "red"), "DHCP ACK SEND")
+            print ack.summary()

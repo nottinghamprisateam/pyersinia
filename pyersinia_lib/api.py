@@ -88,7 +88,9 @@ def run(config):
         elif config.attack == ['stp_root']:
             from .libs.plugins.stp_root_role import run_attack
             six.print_(colored("[*]", "blue"), "Running STP ROOT ROLE ATTACK...")
-
+        elif config.attack == ['dhcp_rogue']:
+            from .libs.plugins.dhcp_rogue import run_attack
+            six.print_(colored("[*]", "blue"), "Running DHCP ROGUE ATTACK...")
 
 
 
