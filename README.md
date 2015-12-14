@@ -78,17 +78,25 @@ positional arguments:
   arp_spoof_VICTIM
 
 optional arguments:
-  -h, --help        show this help message and exit
-  -v, --verbosity   verbosity level
-  -a ATTACK_TYPE    choose supported attack type
-  -i IFACE          choose network interface
+  -h, --help              show this help message and exit
+  -v, --verbosity         verbosity level
+  -a ATTACK_TYPE          choose supported attack type
+  -i IFACE                choose network interface
+  -g GATEWAY              gateway ip for DHCP conf
+  -s IPSERVER             DHCP ip server
+  -n NETWORK              network address. Example: 192.168.1.0
+  -m NETMASK              netmask. Example: 255.255.255.0
+  --domain DOMAIN         domain name
+  --sdomain SERVER_DOMAIN ip address of name server domain
+                          
 
 supported attacks:
-        arp_spoof, dhcp_discover_dos, stp_tcn, stp_conf, stp_root
+        stp_root_role, dhcp_discover_dos, stp_bdpu_conf, dhcp_rogue, stp_tcn, arp_poison
 
 examples:
         python pyersinia.py -a arp_spoof 127.0.0.1 127.0.0.1
         python pyersinia.py -a stp_root -i eth0
+
 
 ```
 
