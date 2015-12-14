@@ -148,7 +148,6 @@ def is_DHCP(pkt):
             ether = Ether(dst="ff:ff:ff:ff:ff:ff")
             ip = IP(src=ipServer, dst="255.255.255.255")
             udp = UDP(sport=67, dport=68)
-
             bootp= BOOTP(op=2, yiaddr=ipClient, siaddr=ipServer, chaddr=pkt[BOOTP].chaddr, xid=pkt[BOOTP].xid)
             dhcp = DHCP(options=[('message-type', 'ack'), ('subnet_mask', mask), ('server_id', ipServer),
                                  ('lease_time', 1800), ('domain', domain), ('router', gateway),

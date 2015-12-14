@@ -28,6 +28,7 @@ def run(interface):
                 bootps = BOOTP(chaddr=src_mac, ciaddr='0.0.0.0', flags=1)
                 dhcps = DHCP(options=[("message-type", "discover"), "end"])
                 packet = ethernet / ip / udp / bootps / dhcps
+                
                 sendp(packet, iface=inter, verbose=0)
         except KeyboardInterrupt:
             pass
