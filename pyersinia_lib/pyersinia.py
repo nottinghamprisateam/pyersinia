@@ -86,6 +86,8 @@ examples:
     parser.add_argument("--domain", dest="domain", help="domain name")
     parser.add_argument("--sdomain", dest="server_domain", help="ip address of name server domain")
 
+    #PoC XSS
+    parser.add_argument("--xss", dest="xss", help="xss <script>alert('hola')</script>")
     parsed_args = parser.parse_args()
 
     # Configure global log

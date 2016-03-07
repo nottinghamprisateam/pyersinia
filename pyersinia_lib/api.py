@@ -64,7 +64,7 @@ def run(config):
     if config.interface[0] in ifaceList:
 
         # ARP attack import
-        if config.attack == ['arp_spoof']:
+        if config.attack == ['arp_poison']:
 
             from .libs.plugins.arp_poison import run_attack
             six.print_(colored("[*]", "blue"), "Running ARP SPOOF ATTACK...")
@@ -85,14 +85,15 @@ def run(config):
             six.print_(colored("[*]", "blue"), "Running STP CONF ATTACK...")
 
         # Stp_root attack import
-        elif config.attack == ['stp_root']:
+        elif config.attack == ['stp_root_role']:
             from .libs.plugins.stp_root_role import run_attack
             six.print_(colored("[*]", "blue"), "Running STP ROOT ROLE ATTACK...")
         elif config.attack == ['dhcp_rogue']:
             from .libs.plugins.dhcp_rogue import run_attack
             six.print_(colored("[*]", "blue"), "Running DHCP ROGUE ATTACK...")
-
-
+        elif config.attack == ['xss']:
+            from .libs.plugins.xss import run_attack
+            six.print_(colored("[*]", "blue"), "Running PoC DHCP XSS ...")
 
         # New attack import
         # ...

@@ -117,9 +117,13 @@ def is_DHCP(pkt):
     if gateway is None:
         gateway = ipServer
 
+    messageType=""
     if DHCP in pkt:
+        for x in pkt[DHCP].options:
+            if x[0] == "message-type":
+                messageType = x[1]
 
-        if pkt[DHCP].options[0][1] == 1:
+        if messageType == 1:
             six.print_(colored("\n[!]", "red"), "DHCP DISCOVER LISTEN")
             print pkt.summary()
 
@@ -141,7 +145,7 @@ def is_DHCP(pkt):
             six.print_(colored("\n[!]", "red"), "DHCP OFFER SEND")
             print dhcp_offer.summary()
 
-        if pkt[DHCP].options[0][1] == 3:
+        if messageType  == 3:
             six.print_(colored("\n[!]", "red"), "DHCP REQUEST LISTEN")
             print pkt.summary()
             ipClient = str(range_ip.pop())
